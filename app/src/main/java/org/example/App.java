@@ -27,12 +27,22 @@ public class App extends ListenerAdapter {
     }
 
     @Override
-    public void onMessageReceived(MessageReceivedEvent event) {
-        if (event.getAuthor().isBot()) return;
-        if (!event.getMessage().getContentRaw().equalsIgnoreCase("!testwelcome")) return;
+public void onMessageReceived(MessageReceivedEvent event) {
+    if (event.getAuthor().isBot()) return;
 
-        sendWelcome(event.getAuthor().getAsMention(), event.getAuthor().getEffectiveAvatarUrl(), event.getGuild().getMemberCount(), event.getGuild());
-    }
+    System.out.println("Message received: " + event.getMessage().getContentRaw());
+
+    if (!event.getMessage().getContentRaw().equalsIgnoreCase("!testwelcome")) return;
+
+    event.getChannel().sendMessage("Test command received ✅").queue();
+
+    sendWelcome(
+            event.getAuthor().getAsMention(),
+            event.getAuthor().getEffectiveAvatarUrl(),
+            event.getGuild().getMemberCount(),
+            event.getGuild()
+    );
+}
 
     private void sendWelcome(String mention, String avatarUrl, int memberCount, net.dv8tion.jda.api.entities.Guild guild) {
         var channel = guild.getTextChannelById("1492289784448811230");
