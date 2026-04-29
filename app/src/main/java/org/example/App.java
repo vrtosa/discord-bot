@@ -17,44 +17,50 @@ public class App extends ListenerAdapter {
     }
 
 @Override
-public void onGuildMemberJoin(GuildMemberJoinEvent event) {
+public void onMessageReceived(MessageReceivedEvent event) {
 
-    var channel = event.getGuild().getTextChannelById("1498891171928215622");
+    // ignore bots
+    if (event.getAuthor().isBot()) return;
 
-    if (channel != null) {
+    // command
+    if (event.getMessage().getContentRaw().equalsIgnoreCase("!testwelcome")) {
 
-        EmbedBuilder embed = new EmbedBuilder();
+        var channel = event.getGuild().getTextChannelById("1492289784448811230");
 
-        embed.setColor(new Color(180, 0, 255));
+        if (channel != null) {
 
-        embed.setTitle("➤ Welcome To Tempest Federation");
+            EmbedBuilder embed = new EmbedBuilder();
 
-        embed.setDescription(
-                "✦ You Just Stepped Into Something New\n\n" +
+            embed.setColor(new Color(180, 0, 255));
+            embed.setTitle("➤ Welcome To Tempest Federation");
 
-                "*This isn’t just a server,*\n\n" +
+            embed.setDescription(
+                    "✦ You Just Stepped Into Something New\n\n" +
 
-                "✦ It’s a place to hang out, share ideas, and connect with awesome people.\n" +
-                "✦ Whether you're here to chat, learn, game, or just vibe — you belong here.\n\n" +
+                    "*This isn’t just a server,*\n\n" +
 
-                "✨ **What to do next:**\n" +
-                "→ Check the rules\n" +
-                "→ Introduce yourself\n" +
-                "→ Jump into a conversation\n\n" +
+                    "✦ It’s a place to hang out, share ideas, and connect with awesome people.\n" +
+                    "✦ Whether you're here to chat, learn, game, or just vibe — you belong here.\n\n" +
 
-                "🎯 Ask questions or share what you're into\n" +
-                "💬 Be respectful and have fun\n\n" +
+                    "✨ **What to do next:**\n" +
+                    "→ Check the rules\n" +
+                    "→ Introduce yourself\n" +
+                    "→ Jump into a conversation\n\n" +
 
-                "*If you need anything, staff is here to help.*\n\n" +
+                    "🎯 Ask questions or share what you're into\n" +
+                    "💬 Be respectful and have fun\n\n" +
 
-                "**Enjoy your stay and make yourself at home 🚀**"
-        );
+                    "*If you need anything, staff is here to help.*\n\n" +
 
-        embed.setThumbnail(event.getUser().getEffectiveAvatarUrl());
-        embed.setFooter("Tempest Federation • Community & Vibes");
+                    "**Enjoy your stay and make yourself at home 🚀**"
+            );
 
-        channel.sendMessage("Welcome " + event.getUser().getAsMention() + " 👋")
-                .setEmbeds(embed.build())
-                .queue();
+            embed.setThumbnail(event.getAuthor().getEffectiveAvatarUrl());
+            embed.setFooter("Tempest Federation • Community & Vibes");
+
+            channel.sendMessage("Welcome " + event.getAuthor().getAsMention() + " 👋")
+                    .setEmbeds(embed.build())
+                    .queue();
+        }
     }
 }
