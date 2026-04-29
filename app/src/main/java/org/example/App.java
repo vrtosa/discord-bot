@@ -12,7 +12,11 @@ import java.awt.Color;
 public class App extends ListenerAdapter {
     public static void main(String[] args) throws Exception {
         JDABuilder.createDefault(System.getenv("DISCORD_TOKEN"))
-                .enableIntents(GatewayIntent.GUILD_MEMBERS, GatewayIntent.MESSAGE_CONTENT)
+                .enableIntents(
+        GatewayIntent.GUILD_MEMBERS,
+        GatewayIntent.GUILD_MESSAGES,
+        GatewayIntent.MESSAGE_CONTENT
+)
                 .addEventListeners(new App())
                 .build();
     }
