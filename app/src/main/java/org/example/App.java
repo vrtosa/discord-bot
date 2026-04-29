@@ -45,7 +45,7 @@ public void onMessageReceived(MessageReceivedEvent event) {
 }
 
     private void sendWelcome(String mention, String avatarUrl, int memberCount, net.dv8tion.jda.api.entities.Guild guild) {
-        var channel = guild.getTextChannelById("1492289784448811230");
+        var channel = guild.getTextChannelById("1498891171928215622");
 
         if (channel == null) return;
 
