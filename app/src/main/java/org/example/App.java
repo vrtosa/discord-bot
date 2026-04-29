@@ -19,7 +19,7 @@ public class App extends ListenerAdapter {
 @Override
 public void onGuildMemberJoin(GuildMemberJoinEvent event) {
 
-    var channel = event.getGuild().getTextChannelById("1492289784448811230");
+    var channel = event.getGuild().getTextChannelById("1498891171928215622");
 
     if (channel != null) {
 
